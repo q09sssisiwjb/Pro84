@@ -31,6 +31,7 @@ export function LoginForm({ onSuccess, onSwitchToSignup }: LoginFormProps) {
         body: JSON.stringify({
           userId: user.uid,
           displayName: user.displayName || user.email?.split('@')[0],
+          email: user.email,
         }),
       });
       
@@ -67,6 +68,7 @@ export function LoginForm({ onSuccess, onSwitchToSignup }: LoginFormProps) {
         body: JSON.stringify({
           userId: user.uid,
           displayName: user.displayName || user.email?.split('@')[0],
+          email: user.email,
         }),
       });
       

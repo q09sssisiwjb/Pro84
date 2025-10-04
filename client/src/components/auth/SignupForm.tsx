@@ -32,6 +32,7 @@ export function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormProps) {
         body: JSON.stringify({
           userId: user.uid,
           displayName: username,
+          email: user.email,
         }),
       });
       
@@ -68,6 +69,7 @@ export function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormProps) {
         body: JSON.stringify({
           userId: user.uid,
           displayName: user.displayName || user.email?.split('@')[0],
+          email: user.email,
         }),
       });
       
