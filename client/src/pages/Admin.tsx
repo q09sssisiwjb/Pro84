@@ -40,6 +40,7 @@ interface Image {
 interface UserProfile {
   id: string;
   userId: string;
+  email: string | null;
   displayName: string | null;
   bio: string | null;
   location: string | null;
@@ -489,6 +490,7 @@ export default function Admin() {
                     <TableHeader>
                       <TableRow>
                         <TableHead className="min-w-[150px]">Display Name</TableHead>
+                        <TableHead className="min-w-[200px]">Email</TableHead>
                         <TableHead className="min-w-[120px]">User ID</TableHead>
                         <TableHead className="min-w-[120px]">Location</TableHead>
                         <TableHead className="min-w-[100px]">Account Status</TableHead>
@@ -505,6 +507,9 @@ export default function Admin() {
                         <TableRow key={profile.id} data-testid={`row-user-${profile.id}`}>
                           <TableCell data-testid={`text-display-name-${profile.id}`}>
                             {profile.displayName || "Not set"}
+                          </TableCell>
+                          <TableCell data-testid={`text-email-${profile.id}`}>
+                            {profile.email || "-"}
                           </TableCell>
                           <TableCell className="font-mono text-xs" data-testid={`text-user-id-${profile.id}`}>
                             {profile.userId.substring(0, 8)}...

@@ -489,7 +489,7 @@ Return only the enhanced prompt, nothing else.`;
   // Initialize user profile on registration
   app.post("/api/auth/init-profile", async (req, res) => {
     try {
-      const { userId, displayName } = req.body;
+      const { userId, displayName, email } = req.body;
       
       if (!userId) {
         return res.status(400).json({ error: "User ID is required" });
@@ -505,6 +505,7 @@ Return only the enhanced prompt, nothing else.`;
       // Create new user profile with default settings
       const profile = await storage.createUserProfile({
         userId,
+        email: email || null,
         displayName: displayName || null,
         bio: null,
         location: null,
@@ -1159,6 +1160,7 @@ Return only the enhanced prompt, nothing else.`;
           const stats = await storage.getUserStatistics(profile.userId);
           return {
             ...profile,
+            email: profile.email || null,
             isOnline: profile.isOnline || false,
             lastActiveAt: profile.lastActive,
             totalImagesGenerated: stats.totalImagesGenerated,

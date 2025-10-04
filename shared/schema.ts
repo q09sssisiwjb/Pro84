@@ -125,6 +125,7 @@ export type UserArtStyle = typeof userArtStyles.$inferSelect;
 export const userProfiles = pgTable("user_profiles", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   userId: text("user_id").notNull().unique(), // Firebase user ID
+  email: text("email"),
   displayName: text("display_name"),
   bio: text("bio"),
   location: text("location"),
@@ -164,6 +165,7 @@ export const insertUserProfileSchema = createInsertSchema(userProfiles).omit({
   createdAt: true,
   updatedAt: true,
 }).extend({
+  email: z.string().email().optional().nullable(),
   displayName: z.string().optional().nullable(),
   bio: z.string().max(500).optional().nullable(),
   location: z.string().optional().nullable(),
