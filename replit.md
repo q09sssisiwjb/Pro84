@@ -61,9 +61,9 @@ The application uses a flexible storage abstraction layer. While PostgreSQL with
 
 # Replit Environment Setup
 
-## Current Status (Last Updated: October 3, 2025)
+## Current Status (Last Updated: October 4, 2025)
 
-The application has been successfully configured to run in the Replit environment. The following setup has been completed:
+The application has been successfully imported and configured to run in the Replit environment. The following setup has been completed:
 
 ### Completed Setup
 ✅ Node.js 20 installed and configured
@@ -92,15 +92,15 @@ To enable full functionality, the following environment variables need to be con
    - `VITE_FIREBASE_MEASUREMENT_ID` (optional)
    - Get from: Firebase Console (https://console.firebase.google.com)
 
-3. **Google Drive Integration** (Already connected):
-   - The google-drive integration is already added to the project
-   - Used for persistent storage of application data
-   - No manual configuration needed - uses Replit Connectors
-
+3. **Google Drive Integration** (Optional, for persistent storage):
+   - The app includes Google Drive integration code for persistent storage
+   - Currently using in-memory storage as fallback (data is not persisted across restarts)
+   - To enable Google Drive storage, set up the google-drive Replit Connector
+   
 4. **Database** (Optional):
    - `DATABASE_URL` - PostgreSQL connection string
-   - Currently the app uses Google Drive storage by default
-   - Database is optional and only needed if switching from Google Drive to PostgreSQL
+   - Not currently required - app uses in-memory storage by default
+   - Can be enabled for persistent storage instead of Google Drive
 
 ### Running the Project
 
