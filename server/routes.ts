@@ -1154,14 +1154,22 @@ Return only the enhanced prompt, nothing else.`;
       
       const profiles = await storage.getAllUserProfiles(limit, offset);
       
-      // Enrich profiles with statistics
+      // Enrich profiles with statistics and calculate online status
       const enrichedProfiles = await Promise.all(
         profiles.map(async (profile) => {
           const stats = await storage.getUserStatistics(profile.userId);
+          
+          // Calculate online status: user is online if last active within 5 minutes
+          const now = new Date();
+          const lastActive = profile.lastActive ? new Date(profile.lastActive) : null;
+          const isOnline = lastActive 
+            ? (now.getTime() - lastActive.getTime()) < 5 * 60 * 1000 
+            : false;
+          
           return {
             ...profile,
             email: profile.email || null,
-            isOnline: profile.isOnline || false,
+            isOnline,
             lastActiveAt: profile.lastActive,
             totalImagesGenerated: stats.totalImagesGenerated,
             totalImagesSaved: stats.totalImagesSaved,
